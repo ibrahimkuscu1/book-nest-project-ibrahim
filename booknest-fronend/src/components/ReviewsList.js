@@ -14,16 +14,14 @@ function ReviewList() {
     },[])
  
   return (
-    <div  className = "pageContainer">
-      <h1 className = "pageHeader drk-blue">This is the Reviews page</h1>
-      <h2> 
+    <div > 
       
      {review.map(review => 
       <div >
       <h4>{review.title}</h4>
       <h6>{review.content}</h6>
       </div>)}
-      </h2>
+      
     </div>
 
   )
