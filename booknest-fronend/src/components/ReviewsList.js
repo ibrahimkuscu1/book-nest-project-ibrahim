@@ -1,25 +1,24 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 
 function ReviewList() {
-  const [review, setReview] = useState([{
-    title: '', 
-    content: ''
-  }])
+  const [reviews, setReview] = useState([])
 
   useEffect(()=> {
-    fetch("http://localhost:5000/review")
-    .then(res =>  res.json())
-    .then(jsonRes => setReview(jsonRes))
+    axios.get("http://localhost:5000/")
+    .then(({data})=>{
+        setReview(data)
     
-    },[])
+    })
+  })
  
   return (
     <div > 
       
-     {review.map(review => 
+     {reviews.map(e => 
       <div >
-      <h4>{review.title}</h4>
-      <h6>{review.content}</h6>
+      <h4 key={e._id}>{e.title}</h4>
+      <h6 key={e._id}>{e.review}</h6>
       </div>)}
       
     </div>

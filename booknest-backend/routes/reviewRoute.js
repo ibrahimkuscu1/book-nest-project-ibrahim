@@ -3,7 +3,7 @@ let Review = require ("../models/reviewModel");
 
 
 //  handles the route to get all the books in My Books
-router.route('/review').get((req, res) => {
+router.route('/').get((req, res) => {
     Review.find()
     .then(reviews => res.json(reviews))
     .catch(err => res.status(400).json('Error: '+ err));
