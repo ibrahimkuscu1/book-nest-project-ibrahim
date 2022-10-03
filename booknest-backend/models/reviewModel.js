@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const ReviewSchema = new Schema (
   {
 // user: {type: String, required: true, lowercase: true, trim: true},
-title: String,
+book: String,
 author: String,
 genre: String,
 review: String, 

@@ -5,7 +5,7 @@ import "../css/App.css"
 
 function ReviewCardReview() {
    const [input, setInput] = useState({
-    title: "", 
+    book: "", 
     review: ""
    })
   
@@ -23,7 +23,7 @@ function ReviewCardReview() {
   function handleClick(event) {
     event.preventDefault(); 
     const newReview = {
-      title:input.title, 
+      book:input.book, 
       review: input.review
     }
     axios.post("http://localhost:5000/review/add", newReview)
@@ -46,10 +46,10 @@ function ReviewCardReview() {
         <input 
         className = 'form-control' 
         type="text" 
-        placeholder="book title" 
+        placeholder="book" 
         onChange={handleChange} 
-        name="title" 
-        value={input.title}/>
+        name="book" 
+        value={input.book}/>
         </div>
 
         <br></br>

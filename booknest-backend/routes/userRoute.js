@@ -15,7 +15,7 @@ router.post("/signup", async(req,res)=>{
         const userInfo={
             userName:req.body.userName,
             email:req.body.email,
-            password:req.body.password
+            password:req.body.password,
         }
     
         if (!req.body.userName || !req.body.email ||!req.body.password )
@@ -32,27 +32,40 @@ router.post("/signup", async(req,res)=>{
             const newUser=userModel.create({
                 userName:req.body.userName,
                 email:req.body.email,
-                password:encryptedPassword
-            }, (err)=>{
+                password:encryptedPassword,
+            
+            })
+            const payload={
+                userName:newUser.userName,
+                email:newUser.email
+            }
+            const token= jwt.sign(payload, process.env.Private_Key,{expiresIn:"2h"});
+            newUser.token=token;
+           
+           
+            
+            
+            (err)=>{
                 if (err) {console.log(err)
                     
                 }
                 res.send({msg:"user registered",newUser})
-            })
+            }
         }
     }
 
         
     catch(err){
-        
+        console.log(err)
+                    
     }
 })
 
 router.post("/login", async(req,res)=>{
-    const user ={
-            email:req.body.email,
-            password:req.body.password
-    }
+    // const user ={
+    //         email:req.body.email,
+    //         password:req.body.password
+    // }
     try{
         if(!req.body.email || !req.body.password){
             return res.send({msg:"invalid email or password"})
@@ -72,7 +85,8 @@ router.post("/login", async(req,res)=>{
                     userName:user.userName,
                     email:user.email
                 }
-                const token= jwt.sign(payload, process.env.Private_Key,{expiresIn:"2h"});
+            const token= jwt.sign(payload, process.env.Private_Key,{expiresIn:"2h"});
+                user.token =token;
                 res.send(token) 
         }
       

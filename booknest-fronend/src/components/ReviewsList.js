@@ -2,11 +2,15 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 function ReviewList() {
-  const [reviews, setReview] = useState([])
+  const [reviews, setReview] = useState([{
+    title:"",
+    review:""
+  }])
 
   useEffect(()=> {
-    axios.get("http://localhost:5000/")
+    axios.get("http://localhost:5000/reviewRoute")
     .then(({data})=>{
+      console.log(data)
         setReview(data)
     
     })
@@ -17,8 +21,7 @@ function ReviewList() {
       
      {reviews.map(e => 
       <div >
-      <h4 key={e._id}>{e.title}</h4>
-      <h6 key={e._id}>{e.review}</h6>
+      <h6 key={e._id}> Book: {e.book}, Review:{e.review} </h6>
       </div>)}
       
     </div>

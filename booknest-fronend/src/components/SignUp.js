@@ -14,16 +14,16 @@ import  axios from "axios"
 const theme = createTheme();
 
 export default function SignUp() {
-    const [userRecord,setUserRecord] = useState(
+    const [user,setUser] = useState(
         {
-            userName:"",
+          userName:"",
           email:"",
           password:""
         }
     )
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("http://localhost:5000/signup", userRecord).then((res)=>{
+    axios.post("http://localhost:5000/signup", user).then((res)=>{
         console.log(res)
     }).catch((err)=>
     { console.log(err)})
@@ -31,8 +31,8 @@ export default function SignUp() {
   };
   function handleChange(e){
     const {name, value} = e.target;
-    setUserRecord({
-        ...userRecord,
+    setUser({
+        ...user,
         [name]:value,
     })
     
@@ -63,7 +63,7 @@ export default function SignUp() {
                     fullWidth
                     id="userName"
                     label="userName"
-                    value={userRecord.userName}
+                    value={user.userName}
                     autoFocus
                     onChange={handleChange}
                   />
@@ -76,7 +76,7 @@ export default function SignUp() {
                     id="email"
                     label="email"
                     name="email"
-                    value={userRecord.email}
+                    value={user.email}
                     autoComplete="sleepTime"
                     onChange={handleChange}
                   />
@@ -89,7 +89,7 @@ export default function SignUp() {
                     label="password"
                     type="password"
                     id="password"
-                    value={userRecord.password}
+                    value={user.password}
                     autoComplete="new-note"
                     onChange={handleChange}
                   />

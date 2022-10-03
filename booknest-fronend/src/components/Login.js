@@ -32,7 +32,7 @@ export default function SignIn() {
    
 
     axios.post("http://localhost:5000/login",
-    user).then((res)=>{console.log(res.data)
+    user).then((res)=>{console.log(res)
     axios.get("http://localhost:5000/welcome",{
         headers:{Authorization:`Bearer ${res.data}`},
     }).then((res)=>{ console.log(res)})

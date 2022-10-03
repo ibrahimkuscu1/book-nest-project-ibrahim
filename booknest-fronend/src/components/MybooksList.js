@@ -27,9 +27,8 @@ function MybooksList() {
             <>
             {books.map(book =>  
             <div>          
-                <h4 >{book.title}</h4>
-                <h4 >{book.author}</h4>
-                <h4 >{book.genre}</h4>
+                <h5  > Title:{book.title}, Author:{book.author}, Genre:{book.genre} </h5>
+
                 </div>
                 )}
             </>
